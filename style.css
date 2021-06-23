@@ -1,0 +1,190 @@
+/* ------ CSS - JavaScript - Analogue Clocks ------ */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color-secondary: #fff;
+  --color-dial: radial-gradient(
+    circle 600px at 47.3% 48%,
+    rgba(255, 255, 255, 1) 0%,
+    rgb(82, 141, 165) 90%
+  );
+  --color-primary-1: hsl(205, 86%, 17%);
+  --color-primary-5: hsl(205, 78%, 60%);
+  --color-primary-7: hsl(205, 90%, 76%);
+  --color-primary-10: hsl(205, 100%, 96%);
+  --color-grey-1: hsl(209, 61%, 16%);
+  --color-grey-2: hsla(211, 39%, 23%, 0.503);
+  --color-grey-5: hsl(210, 22%, 49%);
+  --color-red-dark: hsl(360, 67%, 44%);
+  --color-red-light: hsl(360, 71%, 66%);
+  --fontfamily-primary: "Roboto", sans-serif;
+  --fontfamily-secondary: "Open Sans", sans-serif;
+  --transition: all 0.3s linear;
+  --rotation: 0;
+  --spacing: 0.25rem;
+  --radius: 0.5rem;
+  --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  --max-width: 1170px;
+  --fixed-width: 620px;
+}
+/* Typography */
+html {
+  /* 62.5% of 16px = 10px */
+  font-size: 62.5%;
+  background-color: #f2ee75;
+  background-image: url("data:image/svg+xml,%3Csvg width='84' height='16' viewBox='0 0 84 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M78 7V4h-2v3h-3v2h3v3h2V9h3V7h-3zM30 7V4h-2v3h-3v2h3v3h2V9h3V7h-3zM10 0h2v16h-2V0zm6 0h4v16h-4V0zM2 0h4v16H2V0zm50 0h2v16h-2V0zM38 0h2v16h-2V0zm28 0h2v16h-2V0zm-8 0h6v16h-6V0zM42 0h6v16h-6V0z' fill='%235bae81' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+
+  /*
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  opacity: 0.5;
+  */
+}
+body {
+  font-family: var(--fontfamily-secondary);
+  overflow: hidden;
+}
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: var(--spacing);
+  text-transform: capitalize;
+  line-height: 1.25;
+  font-family: var(--fontfamily-primary);
+}
+h1 {
+  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 50, 0.5));
+  color: var(--color-grey-2);
+  margin-top: 2rem;
+  font-size: 5.5rem;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: 2;
+}
+@media screen and (max-width: 667px) {
+  h1 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+  }
+}
+.bg-blend {
+  background-color: #85ffbd;
+  background-image: linear-gradient(45deg, #85ffbd 0%, #fffb7d 100%);
+  opacity: 0.5;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh;
+}
+.clock {
+  width: 300px;
+  height: 300px;
+  filter: drop-shadow(-1px 6px 3px rgba(50, 50, 50, 0.5));
+  background: var(--color-dial); /* rgba(255, 255, 255, 0.5);  */
+  border-radius: 50%;
+  border: 3px solid var(--color-grey-5);
+  position: relative;
+}
+.number {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform: rotate(var(--rotation));
+  font-family: var(--fontfamily-primary);
+  color: var(--color-grey-5);
+  text-shadow: 2px 2px 2px rgba(255, 255, 255, 1);
+  font-size: 2.5rem;
+}
+.num1 {
+  --rotation: 30deg;
+}
+.num2 {
+  --rotation: 60deg;
+}
+.num3 {
+  --rotation: 90deg;
+}
+.num4 {
+  --rotation: 120deg;
+}
+.num5 {
+  --rotation: 150deg;
+}
+.num6 {
+  --rotation: 180deg;
+}
+.num7 {
+  --rotation: 210deg;
+}
+.num8 {
+  --rotation: 240deg;
+}
+.num9 {
+  --rotation: 270deg;
+}
+.num10 {
+  --rotation: 300deg;
+}
+.num11 {
+  --rotation: 330deg;
+}
+.hand {
+  position: absolute;
+  z-index: 10;
+  bottom: 50%;
+  left: 50%;
+  border: 2px solid var(--color-secondary);
+  filter: drop-shadow(-1px 6px 3px rgba(133, 133, 133, 0.5));
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  transform-origin: bottom;
+  transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+}
+.clock::after {
+  content: "";
+  position: absolute;
+  background: var(--color-primary-1);
+  width: 15px;
+  height: 15px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 11;
+}
+.second {
+  width: 4px;
+  height: 45%;
+  background: var(--color-red-dark);
+  border: 1px solid var(--color-red-light);
+}
+.minute {
+  width: 8px;
+  height: 40%;
+  background: var(--color-primary-1);
+}
+.hour {
+  width: 12px;
+  height: 35%;
+  background: var(--color-primary-1);
+}
